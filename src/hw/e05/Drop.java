@@ -14,19 +14,19 @@
  * the license.
  * */
 /*
- * The following program demonstrates the use of the Scanner class for both string and int input
+ * The following program demonstrates the use of the Scanner class for double input,
+ * as well as calculating the height of an object at a given time.
  * */
-package hw.e04;
+package hw.e05;
 
 import java.util.Scanner;
 
-public class Input_3 {
+public class Drop {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.printf("What's your name?  ");
-        String name = sc.nextLine();
-        System.out.printf("How old are you?  ");
-        int age = sc.nextInt();
-        System.out.printf("So you are %s and you are %d", name, age);
+        System.out.printf("Enter a time less than 4.5 seconds: ");
+        double t = sc.nextDouble();
+        double h = 100 - 4.9 * t * t;
+        System.out.printf("The height of the object at %.2f seconds is %.2f meters.%n", t, h);
     }
 }
