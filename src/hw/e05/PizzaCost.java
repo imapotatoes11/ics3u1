@@ -14,20 +14,13 @@
  * the license.
  * */
 /*
+* Sept 20, 2023
  * The following program demonstrates the use of the Scanner class for double input,
  * as well as calculating the cost of making a pizza.
  * */
 package hw.e05;
 
 public class PizzaCost {
-    /*
-    The cost of making a pizza at a local shop is as follows:
-Labour cost is $0.75 per pizza, regardless of size
-Rent cost is $1.00 per pizza, regardless of size
-Materials is $0.05*diameter*diameter (diameter is measured in inches)
-Write a program that prompts that user for the size of a pizza and then display the cost of making the pizza.
-
-     */
     public static void main(String[] args) {
         System.out.printf("Enter the diameter of the pizza in inches:");
         double diameter = new java.util.Scanner(System.in).nextDouble();

@@ -14,20 +14,24 @@
  * the license.
  * */
 /*
-* Sept 20, 2023
- * The following program demonstrates the use of the Scanner class for double input,
- * as well as calculating the height of an object at a given time.
- * */
+ * Sept 20, 2023
+ * The program does digit manipulation
+ */
 package hw.e05;
 
 import java.util.Scanner;
 
-public class Drop {
+public class DigitSum {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.printf("Enter a time less than 4.5 seconds: ");
-        double t = sc.nextDouble();
-        double h = 100 - 4.9 * t * t;
-        System.out.printf("The height of the object at %.2f seconds is %.2f meters.%n", t, h);
+        System.out.printf("Enter a 3 digit number: ");
+        int num = sc.nextInt();
+        int onum = num;
+        int sum = 0;
+        while (num > 0) {
+            sum += num % 10;
+            num /= 10;
+        }
+        System.out.printf("Sum of digits of " + onum + ": %d", sum);
     }
 }

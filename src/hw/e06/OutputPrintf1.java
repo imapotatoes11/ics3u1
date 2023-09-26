@@ -14,20 +14,23 @@
  * the license.
  * */
 /*
-* Sept 20, 2023
- * The following program demonstrates the use of the Scanner class for double input,
- * as well as calculating the height of an object at a given time.
- * */
-package hw.e05;
+ * Sept 21, 2023
+ * The following program uses printf to print numbers
+ */
+package hw.e06;
 
-import java.util.Scanner;
-
-public class Drop {
+public class OutputPrintf1 {
+    /*
+    use printf to print the following:
+    Juanita's bank account balance is $2,345,678.99.
+       Juan's bank account balance is $   15,455.26.
+     */
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.printf("Enter a time less than 4.5 seconds: ");
-        double t = sc.nextDouble();
-        double h = 100 - 4.9 * t * t;
-        System.out.printf("The height of the object at %.2f seconds is %.2f meters.%n", t, h);
+        String name1 = "Juanita";
+        String name2 = "Juan";
+        double balance1 = 2345678.99;
+        double balance2 = 15455.26;
+        System.out.printf("%s's bank account balance is $%,.2f.%n", name1, balance1);
+        System.out.printf("%7s's bank account balance is $%2s%,10.2f.%n", name2, "", balance2);
     }
 }

@@ -14,20 +14,17 @@
  * the license.
  * */
 /*
-* Sept 20, 2023
- * The following program demonstrates the use of the Scanner class for double input,
- * as well as calculating the height of an object at a given time.
- * */
-package hw.e05;
+ * Sept 21, 2023
+ * The following program uses printf to print float values and their squares
+ */
+package hw.e06;
 
-import java.util.Scanner;
-
-public class Drop {
+public class OutputPrintf2 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.printf("Enter a time less than 4.5 seconds: ");
-        double t = sc.nextDouble();
-        double h = 100 - 4.9 * t * t;
-        System.out.printf("The height of the object at %.2f seconds is %.2f meters.%n", t, h);
+        System.out.printf("%s     %s", "Number", "Square");
+        float[] f = {1.1f, 1.11f, 1.12f, 1.13f, 1.14f, 1.15f};
+        for (float i : f) {
+            System.out.printf("%n%-10.2f %-10.2f", i, Math.pow(i, 2));
+        }
     }
 }

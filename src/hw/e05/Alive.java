@@ -14,6 +14,7 @@
  * the license.
  * */
 /*
+* Sept 20, 2023
 * The following program calculates total slept hours and days alive,
 * given a birthdate and today's date.
  */

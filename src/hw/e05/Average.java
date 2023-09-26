@@ -14,6 +14,7 @@
  * the license.
  * */
 /*
+* Sept 20, 2023
 * The following program demonstrates the use of the Scanner class for double input,
  */
 package hw.e05;
