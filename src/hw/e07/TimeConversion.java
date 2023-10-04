@@ -14,28 +14,24 @@
  * the license.
  * */
 /*
-* Oct 02, 2023
-* The following program calculates hours and minutes given minutes
-* */
+ * Sept 27, 2023
+ * The following program converts minutes to hours and minutes
+ */
 package hw.e07;
+
 import java.util.Scanner;
 
 public class TimeConversion {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        // ask user for minutes and set hours to 0
-        System.out.printf("Enter time in minutes: ");
+        System.out.print("Enter the time in minutes: ");
         int minutes = sc.nextInt();
-        int hours = 0;
-
-        // calculate hours and minutes
-        while (minutes > 60) {
-            hours++;
-            minutes -= 60;
-        }
-
-        // return the result to user
-        System.out.printf("The time in hours and minutes is %d:%s", hours, minutes<10 ? "0" + Integer.toString(minutes) : Integer.toString(minutes));
+        System.out.println("The time in hours and minutes is " + Math.floorDiv(minutes, 60) + ":" +
+                (
+                        (Integer.toString(minutes % 60).length() < 2) ?
+                        "0" + Integer.toString(minutes % 60) :
+                        Integer.toString(minutes % 60)
+                )
+        );
     }
 }

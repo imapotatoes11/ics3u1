@@ -14,61 +14,49 @@
  * the license.
  * */
 /*
-* Oct 02, 2023
-* This program calculates the minimum change
-* required given an amount of money in cents.
-* */
+ * Sept 27, 2023
+ * The following program uses printf to print float values and their squares
+ */
 package hw.e07;
+
 import java.util.Scanner;
 
 public class Change {
-
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the amount of change in cents: ");
+        int change = sc.nextInt();
 
-        System.out.print("Enter the amount (in cents): ");
-        int amount = scanner.nextInt();
-
-        // Initialize the number of coins for each denomination to 0.
         int toonies = 0;
         int loonies = 0;
         int quarters = 0;
         int dimes = 0;
         int nickels = 0;
 
-        // Calculate the minimum number of coins for each denomination.
-        while (amount >= 200) {
-            toonies++;
-            amount -= 200;
+        while (change > 5){
+            if (change >= 200){
+                toonies++;
+                change -= 200;
+            } else if (change >= 100){
+                loonies++;
+                change -= 100;
+            } else if (change >= 25){
+                quarters++;
+                change -= 25;
+            } else if (change >= 10){
+                dimes++;
+                change -= 10;
+            } else if (change >= 5){
+                nickels++;
+                change -= 5;
+            }
         }
-
-        while (amount >= 100) {
-            loonies++;
-            amount -= 100;
-        }
-
-        while (amount >= 25) {
-            quarters++;
-            amount -= 25;
-        }
-
-        while (amount >= 10) {
-            dimes++;
-            amount -= 10;
-        }
-
-        while (amount >= 5) {
-            nickels++;
-            amount -= 5;
-        }
-
-        // Display the minimum number of coins for each denomination and the number of cents that could not be made into change.
-        System.out.println("The minimum number of coins is:");
-        System.out.println("    Toonies: " + toonies);
-        System.out.println("    Loonies: " + loonies);
-        System.out.println("    Quarters: " + quarters);
-        System.out.println("    Dimes: " + dimes);
-        System.out.println("    Nickels: " + nickels);
-        System.out.println("    Leftover cents: " + amount);
+        System.out.printf("The minimum number of coins is:%n");
+        System.out.printf("    Toonies: %d%n", toonies);
+        System.out.printf("    Loonies: %d%n", loonies);
+        System.out.printf("    Quarters: %d%n", quarters);
+        System.out.printf("    Dimes: %d%n", dimes);
+        System.out.printf("    Nickels: %d%n", nickels);
+        System.out.printf("    Leftover cents: %d%n", change);
     }
 }
