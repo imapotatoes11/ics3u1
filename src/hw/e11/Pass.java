@@ -19,6 +19,7 @@
 * */
 package hw.e11;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -114,11 +115,35 @@ class HoldList {
     public static HoldList randomExpression() {
         // generates a random expression with 3-30 terms
         ArrayList<Hold> holds = new ArrayList<>();
+        ArrayList<String> bracketQueue = new ArrayList<>();
         for (int i = 0; i < Pass.randInt(3, 30); i++) {
-            holds.add(new Hold(Pass.randChoice(new Object[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})));
-            holds.add(new Hold(Pass.randChoice(new Object[]{"+", "-", "*", "/"})));
+
+            holds.add(new Hold(Pass.randInt(1, 500)));
+
+            if (Pass.randInt(1, 100) >= 65) {
+                if (bracketQueue.size() > 0) {
+                    holds.add(new Hold(bracketQueue.remove(0)));
+                }
+            }
+
+            holds.add(new Hold(Pass.randChoice(new Object[]{"+", "-", "*", "/", "^"})));
+
+
+            if (Pass.randInt(1,100) >= 60) {
+                holds.add(new Hold("("));
+                bracketQueue.add(")");
+            }
         }
-        holds.add(new Hold(Pass.randChoice(new Object[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})));
+        holds.add(new Hold(Pass.randInt(1, 500)));
+        while (!bracketQueue.isEmpty()) {
+            holds.add(new Hold(bracketQueue.remove(0)));
+        }
+
+        double result = new HoldList(holds).evaluate();
+        if (result > Math.pow(2, 31) || result < -Math.pow(2, 31) ||
+                (result + "").equals("NaN"))
+            return HoldList.randomExpression();
+
         return new HoldList(holds);
     }
 }
