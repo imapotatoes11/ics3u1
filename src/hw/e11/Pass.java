@@ -19,7 +19,6 @@
 * */
 package hw.e11;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -47,7 +46,7 @@ public class Pass {
         int result = (int) Math.round(list.evaluate());
 
         // ask user to solve expression
-        System.out.printf("What is %s (rounded to the nearest whole number)? ", list);
+        System.out.printf("What is %s (rounded to the nearest whole number, trig functions in degrees)? ", list);
         int answer = sc.nextInt();
 
         // confirm user's answer
@@ -114,42 +113,67 @@ class HoldList {
     }
     public static HoldList randomExpression() {
         // generates a random expression with 3-30 terms
+
+        // create an arraylist holding the terms
         ArrayList<Hold> holds = new ArrayList<>();
+        // queue for managing brackets
         ArrayList<String> bracketQueue = new ArrayList<>();
+
+        // Pass.randInt() defines the size/length of the expression
         for (int i = 0; i < Pass.randInt(3, 30); i++) {
 
+            // first number in expression
             holds.add(new Hold(Pass.randInt(1, 500)));
 
+            // random chance to close the bracket (~35% chance per roll)
             if (Pass.randInt(1, 100) >= 65) {
                 if (bracketQueue.size() > 0) {
                     holds.add(new Hold(bracketQueue.remove(0)));
                 }
             }
 
-            holds.add(new Hold(Pass.randChoice(new Object[]{"+", "-", "*", "/", "^"})));
+            // random operator
+            holds.add(new Hold(Pass.randChoice(new Object[]{
+                    "+", "-", "*", "/", "^",
+                    "+", "-", "*", "/"
+                    // \-> DMAS operators doubled to half the chances of there being an exponent
+                    //     to minimize too wacky numbers
+            })));
 
 
+            // random chance to add an opening bracket (~40% chance per roll)
             if (Pass.randInt(1,100) >= 60) {
-                holds.add(new Hold("("));
+                holds.add(new Hold(Pass.randChoice(new Object[]{
+                        "(", "sin(", "cos(", "tan(",
+                        "asin(", "acos(", "atan("
+                })));
                 bracketQueue.add(")");
             }
         }
+        // add the last number
         holds.add(new Hold(Pass.randInt(1, 500)));
+
+        // if there are still brackets that need to be closed, close them now
         while (!bracketQueue.isEmpty()) {
             holds.add(new Hold(bracketQueue.remove(0)));
         }
 
+        // check if the number is too janky. if it is, rerun the method.
         double result = new HoldList(holds).evaluate();
         if (result > Math.pow(2, 31) || result < -Math.pow(2, 31) ||
-                (result + "").equals("NaN"))
+                (result + "").equals("NaN") || (int) result == 0)
             return HoldList.randomExpression();
 
+        // return the final expression
         return new HoldList(holds);
     }
 }
 
 
 class Hold {
+    // the entire purpose of this object is to have both ints and strings (numbers and operators)
+    // in a single arraylist.
+
     // object for holding a value (number or operator)
     public Object value;
     public Hold(Object value) {
@@ -162,7 +186,7 @@ class Hold {
 }
 
 class Eval{
-    // eval() method from Boann
+    // eval() method borrowed from Boann
     // https://stackoverflow.com/a/26227947
     public static double eval(final String str) {
         return new Object() {
@@ -238,6 +262,9 @@ class Eval{
                     else if (func.equals("sin")) x = Math.sin(Math.toRadians(x));
                     else if (func.equals("cos")) x = Math.cos(Math.toRadians(x));
                     else if (func.equals("tan")) x = Math.tan(Math.toRadians(x));
+                    else if (func.equals("asin")) x = Math.asin(Math.toRadians(x));
+                    else if (func.equals("acos")) x = Math.acos(Math.toRadians(x));
+                    else if (func.equals("atan")) x = Math.atan(Math.toRadians(x));
                     else throw new RuntimeException("Unknown function: " + func);
                 } else {
                     throw new RuntimeException("Unexpected: " + (char)ch);
