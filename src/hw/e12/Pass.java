@@ -14,10 +14,10 @@
  * the license.
  * */
 /*
-* Oct 05, 2023
+* Oct 13, 2023
 * The following program asks the user to solve a random arithmetic expression
 * */
-package hw.e11;
+package hw.e12;
 
 import java.util.ArrayList;
 import java.util.Random;
