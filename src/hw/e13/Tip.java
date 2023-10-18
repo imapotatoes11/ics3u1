@@ -84,6 +84,7 @@ public class Tip {
 
             while ((inputLine = in.readLine()) != null) {
                 // TODO: response keeps printing \n instead of new line
+                System.out.println(inputLine.split("\\n\\n").length);
                 inputLine = inputLine.replaceAll("\\n", "\n");
                 response.append(inputLine);
             }
