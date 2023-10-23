@@ -28,11 +28,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-//import java.io.BufferedReader;
-//import java.io.InputStreamReader;
-//import java.io.OutputStream;
-//import java.net.HttpURLConnection;
-//import java.net.URL;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -66,7 +61,7 @@ public class Tip {
                     "  \"max_tokens\": 200,\n" +
                     "  \"truncate\": \"END\",\n" +
                     "  \"return_likelihoods\": \"NONE\",\n" +
-                    "  \"temperature\": 2.1," +
+                    "  \"temperature\": 1.7," + // 2.1
                     "  \"frequency_penalty\": 0.76," +
                     "  \"prompt\": \"I am a high school computer science student learning java. my grade right now is %s. give me some tips for success.\"\n".formatted(grade) +
                     "}";
@@ -83,10 +78,9 @@ public class Tip {
             StringBuilder response = new StringBuilder();
 
             while ((inputLine = in.readLine()) != null) {
-                // TODO: response keeps printing \n instead of new line
-                System.out.println(inputLine.split("\\n\\n").length);
-                inputLine = inputLine.replaceAll("\\n", "\n");
-                response.append(inputLine);
+                // im not sure what i did, but this (and line 100) seems to fix
+                // the raw \n getting outputted instead of a new line.
+                response.append(inputLine).append("\n");
             }
 
             in.close();
@@ -94,32 +88,123 @@ public class Tip {
             // Print response
             // Extract the generated text using regex
             String responseString = response.toString();
-            Pattern pattern = Pattern.compile("\"text\":\"(.*?)\"");
+            Pattern pattern = Pattern.compile("\"text\":\"(.*?)\"", Pattern.DOTALL);
             Matcher matcher = pattern.matcher(responseString);
 
             if (matcher.find()) {
                 String generatedText = matcher.group(1);
-//                System.out.println(generatedText);
-                generatedText = generatedText.toString().replaceAll("\n", "\n");
+                generatedText = generatedText.replaceAll("\\\\n", "\n");
                 return generatedText;
             } else {
                 throw new Exception("Generation was not found");
             }
         } catch (Exception e) {
-            // fall back to manual prompts in case of a http or connection error
+            // fall back to manual prompts in case of an http or connection error
             switch (grade) {
                 case "A" -> {
-                    return "Engage in programming competitions or hackathons to challenge yourself and gain experience in solving real-world problems.";
+                    return (String) randChoice(new Object[] {
+                            "Keep your notes, assignments, and projects well-organized. Use folders or digital tools to categorize and easily access your materials",
+                            "Consistent practice is key to mastering Java or any programming language. Set aside dedicated time each week to practice coding and work on projects",
+                            "Regularly review what you've learned and revisit previous assignemnts or projects. Understanding the concepts deeply will reinforce your knowledge.",
+                            "Understand the underlying concepts and principles of programming. Don't just aim to complete assignments; strive to understand why and how code works",
+                            "Don't hesitate to ask your teacher, classmates, or online communities for help when you're stuck or need clarification. Asking questions is a crucial part of learning.",
+                            "Engage in class discussion and forums related to Java and computer science. Sharing your thoughts and ideas can deepen your understanding and expose you to different perspectives.",
+                            "Supplement your classroom learning with online tutorials, books, and videos related to Java programming. There are numerous online platforms offering free and paid courses.",
+                            "Work on group projects or coding challenges with your classmates. Collaboration can provide new insights and foster teamwork skills.",
+                            "Keep an inquisitive mind and always be eager to learn more. Technology and programming are constantly evolving fields, so being curious will keep you ahead.",
+                            "Balance your academic responsibilities with other aspects of your life. Create a schedule that allocates time for studying, coding practice, relaxation, and extracurricular activities.",
+                            "Understand the exam format, study the topics thoroughly, and practice past exam papers. Don't cram; instead, review consistently leading up to the exam.",
+                            "Work on personal projects that interest you. Hands-on projects can reinforce your understanding and showcase your skills to potential future employers or colleges.",
+                            "Follow relevant tech blogs, subscribe to newsletters, and join programming communities to stay updated on the latest trends, news, and advancements in computer science and Java.",
+                            "Have confidence in your abilities and believe that you can achieve your goals. With dedication and hard work, you'll continue to excel in your studies."
+                    });
                 } case "B" -> {
-                    return "Study well-written Java code to understand different coding styles, best practices, and efficient ways to solve problems.";
+                    return (String) randChoice(new Object[] {
+                            "Make sure you have a solid understanding of fundamental concepts such as data types, variables, operators, control structures (e.g. loops, conditionals), and functions/methods.",
+                            "Set aside time each day to practice coding in Java. The more you practice, the more comfortable and proficient you'll become.",
+                            "Complete all assignments and projects given by your teacher. This hands-on practice will reinforce what you've learned and demonstrate your understanding of the material.",
+                            "Don't hesitate to ask your teacher or classmates for help when you encounter challenges or have questions about the material. Utilize online resources and forums as well.",
+                            "Engage in class discussions, ask questions, and participate in activities. Actively engaging with the material will help reinforce your understanding",
+                            "Keep your notes, assignments, and study materials organized. Create a system that works for you to easily access and review what you've learned.",
+                            "Use reputable online resources, tutorials, and textbooks to supplement your learning. There are numerous free and paid resources available online to help you grasp difficult concepts.",
+                            "Consider forming a study groupp with classmates. Explaining concepts to others can reinforce your own understanding and provide different perspectives on solving problems.",
+                            "Review previous exams and quizzes to identify areas where you may need more practice. Work on mastering these concepts to improve your performance",
+                            "Prioritize your tasks and set aside dedicated time for studying Java each week. Create a study schedule to ensure you cover all necessary material.",
+                            "Stay positive and believe in your ability to improve. Persistence and a positive mindset are key to overcoming challenges and achieving success.",
+                            "Java is a constantly evolving language. Stay updated with the latest versions and advancements in Java to enhance your knowledge and skills.",
+                            "Look for opportunities to apply your Java knowledge to real-world projects or challenges. This will deepen your understanding and make learning more enjoyable."
+                    });
                 } case "C" -> {
-                    return "Utilize online tutorials, documentation, and educational platforms like Codecademy, Udemy, Coursera, and free resources like Oracle's Java tutorials.";
+                    return (String) randChoice(new Object[] {
+                            "Ensure you have a strong grasp of basic programming concepts, including variables, data types, loops, conditionals, and functions/methods.",
+                            "Go back over your class notes, textbooks, and assignments. Make sure you understand all the concepts taught in class.",
+                            "Dedicate time each day to practice Java programming. The more you practice, the more comfortable you'll become with the language.",
+                            "Try to write code daily to reinforce what you've learned. Start with small programs and gradually work your way up to more complex ones.",
+                            "Use online coding platforms (e.g., LeetCode, HackerRank, Codecademy) to solve coding problems. This will help you improve your problem-solving skills and reinforce your understanding of Java.",
+                            "Form a study group with classmates to discuss and solve problems together. Teaching and explaining concepts to others can deepen your understanding.",
+                            "Don't hesitate to ask your teacher, classmates, or online communities (like Stack Overflow) for help when you're stuck on a particular concept or problem.",
+                            "Consider hiring a tutor or seeking extra help from your teacher to clarify difficult concepts.",
+                            "Before exams or assignments, review your notes and the material you've learned. Make flashcards or summaries to reinforce your memory.",
+                            "Don't procrastinate on assignments. Start early and seek clarification if you're unsure about any requirements.",
+                            "Engage in class discussions, ask questions, and participate in class activities to enhance your understanding.",
+                            "Utilize online tutorials, video lectures, and interactive learning platforms to reinforce your understanding of Java concepts.",
+                            "Keep your notes, assignments, and study materials organized. This will help you stay on top of your studies and easily review important information.",
+                            "Set achievable goals for yourself, both short-term and long-term, to track your progress and motivate yourself to improve.",
+                            "Don't get discouraged by setbacks or initial grades. Stay positive, believe in your abilities, and persist in your efforts to improve."
+                    });
                 } case "D" -> {
-                    return "Reach out to teachers, classmates, or experienced programmers for help and guidance when you encounter challenges or have questions.";
+                    return (String) randChoice(new Object[] {
+                            "Ensure you have a solid understanding of the fundamental concepts of Java, such as variables, data types, operators, control flow (if-else, loops), and functions/methods.",
+                            "Regularly review your class notes, textbooks, and any online resources to reinforce what you've learned in class. Make sure you understand the concepts before moving on to more complex topics.",
+                            "Don't hesitate to ask your teacher or classmates for help if you're struggling with a particular concept. Clearing up misunderstandings early can prevent bigger issues later on.",
+                            "Practice coding daily, even if it's just for a short amount of time. Consistent practice will help reinforce what you've learned and improve your problem-solving skills.",
+                            "Begin with simple Java programs and gradually work your way up to more complex ones. This will help you build confidence and understand the language's structure and syntax.",
+                            "Engage in online coding platforms like HackerRank, LeetCode, or Codecademy. These platforms offer a variety of coding challenges that can help you enhance your problem-solving abilities.",
+                            "Consider forming or joining a study group with classmates who are also learning Java. Working with others can provide different perspectives and insights, helping you grasp concepts more effectively.",
+                            "Explore online tutorials, videos, forums, and blogs related to Java. Websites like Codecademy, Udemy, Coursera, and YouTube can offer valuable learning materials.",
+                            "Ensure that you complete and submit your assignments on time. This will not only contribute to your grades but also reinforce what you've learned in class.",
+                            "Analyze your previous tests and quizzes to identify areas where you made mistakes. Focus on improving your understanding in those specific areas.",
+                            "Keep your notes, code, and assignments organized in a way that makes it easy for you to review and study. A well-organized study environment can enhance your productivity.",
+                            "If you're struggling significantly, consider hiring a tutor or seeking extra help outside of class to reinforce your understanding of Java concepts.",
+                            "Don't get discouraged by a low grade. Stay persistent, maintain a positive attitude, and keep pushing forward. Learning a programming language takes time and practice.",
+                            "Create quizzes or flashcards to test your knowledge of Java concepts. Self-assessment can help reinforce what you've learned and identify areas that need further attention."
+                    });
                 } case "F" -> {
-                    return "Ensure you have a solid understanding of fundamental programming concepts such as variables, data types, control structures (loops, conditionals), and functions/methods.";
+                    return (String) randChoice(new Object[] {
+                            "Ensure you have a strong grasp of fundamental programming concepts, including variables, data types, loops, conditionals, and functions/methods.",
+                            "Go over your class notes, textbooks, and any materials provided by your teacher. Make sure you understand the concepts and examples presented.",
+                            "Programming is a skill that improves with practice. Code every day, even if it's just for a short period. Work on coding exercises, projects, or challenges to reinforce what you've learned.",
+                            "Make a schedule and stick to it. Finish your assignments well before the due date, so you have time to review and revise.",
+                            "Don't hesitate to ask your teacher for clarification on concepts you don't understand. You can also seek help from classmates, online forums, or tutoring services.",
+                            "There are numerous online resources available for learning Java, such as tutorials, videos, and interactive platforms like Codecademy, Udemy, or Coursera. Utilize them to enhance your understanding.",
+                            "Collaborate with peers who are also learning Java. Discuss problems, share insights, and work on projects together. This can provide new perspectives and improve your understanding.",
+                            "Begin with simple programs and gradually move on to more complex ones as you become more comfortable with the language. Break down larger problems into manageable parts.",
+                            "Learn to debug your code effectively. Understanding how to identify and fix errors is a crucial skill for any programmer.",
+                            "Participate in coding challenges on websites like LeetCode, HackerRank, or CodeChef. These platforms offer a variety of problems that can help you improve your problem-solving skills.",
+                            "Understand where you made mistakes in previous assessments and ensure you've learned from them to avoid repeating them in future assessments.",
+                            "Learning programming can be challenging, but persistence is key. Stay positive, believe in your ability to improve, and celebrate your progress, no matter how small.",
+                            "Keep your code organized and well-commented. A well-structured codebase is easier to understand and maintain.",
+                            "Allocate specific time blocks for studying, practicing, and completing assignments. Avoid procrastination and manage your time efficiently.",
+                            "Beyond your coursework, explore other aspects of computer science that interest you. Curiosity will drive your motivation to learn more."
+                    });
                 } default -> {
-                    return "Practice, practice, practice - The more you practice Java, the better you will become at it. Try to complete a few coding problems or projects each week to help you improve.";
+                    return (String) randChoice(new Object[] {
+                            "Ensure you have a solid grasp of fundamental programming concepts, such as variables, data types, control structures (if-else, loops), and functions/methods.",
+                            "Consistent practice is key to mastering any programming language. Set aside time each day to write code, solve problems, and work on projects.",
+                            "Try to build real-world applications or small projects. Working on projects not only solidifies your understanding but also gives you something to showcase to potential employers or colleges.",
+                            "Study code written by others. Understanding different coding styles, design patterns, and best practices will enhance your own coding abilities.",
+                            "Don't hesitate to ask for help from your peers, teachers, or online communities. Collaborating with others can provide new perspectives and help you learn faster.",
+                            "Adhere to Java coding conventions and best practices. Consistent code style makes your code more readable and maintainable.",
+                            "Practice writing clear comments and documentation for your code. This helps not only others but also yourself when you revisit the code later.",
+                            "Learn how to write and execute tests to verify the correctness of your code. This will help you catch bugs early and ensure your code behaves as expected.",
+                            "Java is an object-oriented language, so understanding concepts like classes, objects, inheritance, polymorphism, and encapsulation is crucial.",
+                            "Keep up with the latest developments in the Java language, updates, and new features. Java evolves, and staying current will ensure you're using modern practices.",
+                            "Learning a programming language takes time and effort. Don't get discouraged if things are challenging initially. Keep practicing and learning.",
+                            "Familiarize yourself with popular Java libraries and frameworks that can simplify development and enhance your productivity.",
+                            "Engage with online communities, forums, or local meetups related to Java. It's a great way to learn from others, get advice, and stay motivated.",
+                            "Don't limit yourself to what you're taught in class. Experiment with different concepts, tools, and techniques to broaden your understanding.",
+                            "Keep your codebase organized and maintain a well-structured project directory. Good organization saves time and helps you find what you need easily."
+                    });
                 }
             }
         }
