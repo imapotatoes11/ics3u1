@@ -15,32 +15,36 @@
  * */
 /*
  * Oct 24, 2023
- * The following program is an age guessing program
+ * The following program finds the closest power of two to
+ * the user-inputted number.
  * */
 package hw.e14;
 
 import java.util.Scanner;
 
-public class Age {
+public class LeastTwoPower {
     public static void main(String[] args) {
         // instantiate objects
         Scanner sc = new Scanner(System.in);
-        final int age = 15;
-        int guess = 0;
+        // variable `two` is a long in case user enters
+        // a number where the result is larger than the
+        // 32-bit limit (2,147,483,647)
+        long two;
+        int num;
 
-        // the loop
-        while (guess != age) {
-            // ask user for age
-            System.out.printf("Guess my age: ");
-            guess = sc.nextInt();
+        // ask user for number
+        System.out.printf("Enter a number: ");
+        num = sc.nextInt();
 
-            // if guess is correct, tell the user
-            // if guess is incorrect, tell the user
-            if (guess == age) {
-                System.out.println("Correct!");
-            } else {
-                System.out.println("That is not my age, guess again.");
-            }
-        }
+//        // continuously multiply two by 2 until it is larger than
+//        // the number the user inputted.
+//        while (two < num) {
+//            two *= 2;
+//        }
+        // more efficient method to determine the closest power
+        two = (long) Math.pow(2, Math.ceil(Math.log(num)/Math.log(2)));
+
+        // output result to user
+        System.out.println(two);
     }
 }
