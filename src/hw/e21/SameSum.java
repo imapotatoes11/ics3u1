@@ -27,8 +27,8 @@ public class SameSum {
     public static void main(String[] args) {
         // initialize objects
         final int ARR_SIZE = 10;
-        int[] list1 = new int[10];
-        int[] list2 = new int[10];
+        int[] list1 = new int[ARR_SIZE];
+        int[] list2 = new int[ARR_SIZE];
         Scanner sc = new Scanner(System.in);
 
         // ask user for values of list1

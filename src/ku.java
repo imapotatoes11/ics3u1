@@ -212,3 +212,43 @@ public class ku {
 		return (char)random.nextInt(0, 65535);
     }
 }
+
+class List {
+	public Object a;
+
+	public List(Object a) {
+		this.a = a;
+	}
+
+	public void set(Object a) {
+		this.a = a;
+	}
+	public Object get() {
+		return this.a;
+	}
+
+	public static List from(Object a) {
+		return new List(a);
+	}
+
+	public Object export() {
+		return this.get();
+	}
+	public void reset() {
+		this.a = null;
+	}
+}
+
+class Lists {
+	public ArrayList list;
+
+	public Lists() {
+		list = new ArrayList<List>();
+	}
+	public Lists(ArrayList<List> list) {
+		this.list = list;
+	}
+	public static Lists from(ArrayList<List> list) {
+		return new Lists(list);
+	}
+}
