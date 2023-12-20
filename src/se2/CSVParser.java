@@ -107,5 +107,6 @@ public class CSVParser {
             bw.write(String.join(",", line.getArray()));
             bw.newLine();
         }
+        bw.close();
     }
 }

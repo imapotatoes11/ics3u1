@@ -144,8 +144,8 @@ public class Line {
      * get the user's pin
      * @return the pin
      */
-    public int getPin() {
-        return Integer.parseInt(line[7]);
+    public String getPin() {
+        return line[7];
     }
 
     /**
