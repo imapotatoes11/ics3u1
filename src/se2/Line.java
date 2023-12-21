@@ -216,8 +216,8 @@ public class Line {
      * change a pin to a new value
      * @param pin new pin value
      */
-    public void setPin(int pin) {
-        line[7] = Integer.toString(pin);
+    public void setPin(String pin) {
+        line[7] = pin;
     }
 
     /**

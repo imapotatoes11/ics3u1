@@ -38,9 +38,9 @@ public class __test__ {
                     break;
             }
         }
-//        ATM.createAccount(123457);
+//        ATM.deposit(123457);
 
         CSVParser parser = new CSVParser("src/se2/data.csv");
-        System.out.println(parser.getLine(123457).getPin());
+//        System.out.println(parser.getLine(123457).getPin());
     }
 }
