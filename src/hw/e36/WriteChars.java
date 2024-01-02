@@ -14,30 +14,44 @@
  * the license.
  * */
 /*
- * Dec. 12, 2023
- * The program writes 10 user-inputted strings to a file.
+ * Dec 28, 2023
+ * The program does the following:
+ * - continually ask user to enter a string, until "stop" is entered
+ * - write to the file "writeChars.txt" putting each character of the strings on
+ *   a separate line
+ *   - in the file, there should be a blank line separating each string from the
+ *     next one
+ * - the stop string should not be included in the output file
  * */
 package hw.e36;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
-public class WriteLines {
+public class WriteChars {
     public static void main(String[] args) {
         // initialize objects
         Scanner sc = new Scanner(System.in);
-        final String fileName = "writeLines.txt";
+        final String fileName = "writeChars.txt";
 
         try {
             // try to create a buffered writer object
             BufferedWriter br = new BufferedWriter(new FileWriter(fileName, false));
 
             // loop and write 10 user-inputted strings to the file
-            for (int i = 0; i < 10; i++) {
+            while (true) {
                 System.out.print("Enter a string: ");
-                br.write(sc.nextLine());
+                String input = sc.nextLine();
+
+                if (input.equals("stop")) {
+                    break;
+                }
+
+                for (int i = 0; i < input.length(); i++) {
+                    br.write(input.charAt(i) + "\n");
+                }
+
+                br.write("\n");
             }
 
             // dont forget to close the file

@@ -14,30 +14,31 @@
  * the license.
  * */
 /*
- * Dec. 12, 2023
- * The program writes 10 user-inputted strings to a file.
+ * Dec 28, 2023
+ * The program outputs a 12x12 times table to "timetable.txt"
+ * with each row and column labeled with the corresponding number.
+ * Each element is also separated by a tab.
  * */
 package hw.e36;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
-public class WriteLines {
+public class TimeTable {
     public static void main(String[] args) {
         // initialize objects
-        Scanner sc = new Scanner(System.in);
-        final String fileName = "writeLines.txt";
+        final String fileName = "timetable.txt";
 
         try {
             // try to create a buffered writer object
             BufferedWriter br = new BufferedWriter(new FileWriter(fileName, false));
 
-            // loop and write 10 user-inputted strings to the file
-            for (int i = 0; i < 10; i++) {
-                System.out.print("Enter a string: ");
-                br.write(sc.nextLine());
+            // print the times table to the file
+            for (int i = 1; i <= 12; i++) {
+                for (int j = 1; j <= 12; j++) {
+                    br.write(i * j + "\t");
+                }
+                br.write("\n");
             }
 
             // dont forget to close the file

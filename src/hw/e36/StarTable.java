@@ -14,30 +14,42 @@
  * the license.
  * */
 /*
- * Dec. 12, 2023
- * The program writes 10 user-inputted strings to a file.
+ * Dec 28, 2023
+ * The program does the following:
+ * - ask user for dimensions of a 2d array
+ * - create the array and fill each element with '*'
+ * - print the array as a table to the file "star.txt"
  * */
 package hw.e36;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
-public class WriteLines {
+public class StarTable {
     public static void main(String[] args) {
         // initialize objects
         Scanner sc = new Scanner(System.in);
-        final String fileName = "writeLines.txt";
+        final String fileName = "star.txt";
 
         try {
             // try to create a buffered writer object
             BufferedWriter br = new BufferedWriter(new FileWriter(fileName, false));
 
-            // loop and write 10 user-inputted strings to the file
-            for (int i = 0; i < 10; i++) {
-                System.out.print("Enter a string: ");
-                br.write(sc.nextLine());
+            // ask user for dimensions of the array
+            System.out.print("Enter the number of rows: ");
+            int rows = sc.nextInt();
+            System.out.print("Enter the number of columns: ");
+            int cols = sc.nextInt();
+
+            // create the array and fill each element with '*'
+            char[][] arr = new char[rows][cols];
+            for (int i = 0; i < rows; i++) {
+                Arrays.fill(arr[i], '*');
+            }
+
+            // print the array as a table to the file "star.txt"
+            for (int i = 0; i < rows; i++) {
+                br.write(Arrays.toString(arr[i]) + "\n");
             }
 
             // dont forget to close the file
