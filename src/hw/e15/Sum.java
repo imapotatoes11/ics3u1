@@ -14,27 +14,31 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
-* */
-package hw.e11;
+ * Oct 25, 2023
+ * The following program utilizes a do-while loop to continuously
+ * add user-entered values to a sum, until the user enters a negative
+ * value.
+ * */
+package hw.e15;
 
 import java.util.Scanner;
 
-public class AgeCheck {
+public class Sum {
     public static void main(String[] args) {
-        // Initialize scanner class
+        // initialzie objects
         Scanner sc = new Scanner(System.in);
+        int sum = 0; int ans = 0;
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
+        // add answer to sum, and ask user for number.
+        // exit loop if number is negative
+        do {
+            sum += ans;
 
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
-        }
+            System.out.printf("Enter a number: ");
+            ans = sc.nextInt();
+        } while (ans > 0);
+
+        // return result to user
+        System.out.println(sum);
     }
 }

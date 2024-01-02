@@ -14,27 +14,33 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
-* */
-package hw.e11;
+ * Oct 24, 2023
+ * The following program is an age guessing program
+ * */
+package hw.e14;
 
 import java.util.Scanner;
 
-public class AgeCheck {
+public class Age {
     public static void main(String[] args) {
-        // Initialize scanner class
+        // instantiate objects
         Scanner sc = new Scanner(System.in);
+        final int age = 15;
+        int guess = 0;
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
+        // the loop
+        while (guess != age) {
+            // ask user for age
+            System.out.printf("Guess my age: ");
+            guess = sc.nextInt();
 
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
+            // if guess is correct, tell the user
+            // if guess is incorrect, tell the user
+            if (guess == age) {
+                System.out.println("Correct!");
+            } else {
+                System.out.println("That is not my age, guess again.");
+            }
         }
     }
 }

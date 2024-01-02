@@ -14,27 +14,29 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
-* */
-package hw.e11;
+ * Oct 25, 2023
+ * The following program utilizes a for loop to count down
+ * from 100 to a given number by the user by 5s.
+ * */
+package hw.e17;
 
 import java.util.Scanner;
 
-public class AgeCheck {
+public class Backward2 {
     public static void main(String[] args) {
-        // Initialize scanner class
+        // initialize objects
+        int num = 100;
         Scanner sc = new Scanner(System.in);
+        int min;
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
+        // prompt user for input
+        System.out.print("Enter a number: ");
+        min = sc.nextInt();
 
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
+        // print num and constantly subtract 5 until
+        // num < min
+        for (int i = num; i > min; i -= 5) {
+            System.out.println(i);
         }
     }
 }

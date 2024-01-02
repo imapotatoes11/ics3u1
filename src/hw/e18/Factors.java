@@ -14,27 +14,31 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
-* */
-package hw.e11;
+ * Oct 25, 2023
+ * The following program asks the user for an integer and prints out all of
+ * its factors.
+ * */
+package hw.e18;
 
 import java.util.Scanner;
 
-public class AgeCheck {
+public class Factors {
     public static void main(String[] args) {
-        // Initialize scanner class
+        // initialize variables
+        int num = 0;
+        int i = 1;
         Scanner sc = new Scanner(System.in);
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
+        // ask user for input
+        System.out.print("Enter an integer: ");
+        num = sc.nextInt();
 
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
+        // print out the factors
+        while (i <= num) {
+            if (num % i == 0) {
+                System.out.println(i);
+            }
+            i++;
         }
     }
 }

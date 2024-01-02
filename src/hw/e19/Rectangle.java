@@ -14,27 +14,37 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
-* */
-package hw.e11;
+ * Oct 27, 2023
+ * The following program asks the user for a width and height and prints out a
+ * rectangle of that size.
+ * */
+package hw.e19;
 
 import java.util.Scanner;
 
-public class AgeCheck {
+public class Rectangle {
     public static void main(String[] args) {
-        // Initialize scanner class
+        // initialize variables
         Scanner sc = new Scanner(System.in);
+        int width, height;
+        int i = 0;
+        int j = 0;
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
+        // ask user for input
+        System.out.print("Enter width: ");
+        width = sc.nextInt();
+        System.out.print("Enter height: ");
+        height = sc.nextInt();
 
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
+        // print out the rectangle
+        while (i < height) {
+            while (j < width) {
+                System.out.print("*");
+                j++;
+            }
+            System.out.println();
+            j = 0;
+            i++;
         }
     }
 }

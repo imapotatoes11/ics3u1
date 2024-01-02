@@ -14,27 +14,22 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
-* */
-package hw.e11;
+ * Oct 27, 2023
+ * The following program prints out a triangle of numbers.
+ * */
+package hw.e19;
 
-import java.util.Scanner;
-
-public class AgeCheck {
+public class TriangleOfNumbers {
     public static void main(String[] args) {
-        // Initialize scanner class
-        Scanner sc = new Scanner(System.in);
-
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
-
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < i; j++) {
+                System.out.printf("%d", j + 1);
+            }
+            // skip printing a new line for the
+            // first iteration, since i=0, so
+            // no numbers will be printed.
+            if (!(i == 0))
+                System.out.println();
         }
     }
 }

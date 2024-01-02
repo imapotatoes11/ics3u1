@@ -14,27 +14,20 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
-* */
-package hw.e11;
+ * Oct 25, 2023
+ * The following program prints a table of unicode characters 1-212
+ * */
+package hw.e15;
 
-import java.util.Scanner;
-
-public class AgeCheck {
+public class Unicode {
     public static void main(String[] args) {
-        // Initialize scanner class
-        Scanner sc = new Scanner(System.in);
+        // initialize objects
+        int current = 1;
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
-
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
-        }
+        System.out.println("Unicode    Character");
+        do {
+            System.out.printf("%-11d%c\n", current, (char) current);
+            current++;
+        } while (current <= 212);
     }
 }

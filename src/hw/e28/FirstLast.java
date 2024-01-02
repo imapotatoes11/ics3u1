@@ -14,27 +14,27 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
+* Nov 22, 2023
+* The program asks the user for a string and returns the first and last character
+* of the string.
 * */
-package hw.e11;
+package hw.e28;
 
 import java.util.Scanner;
 
-public class AgeCheck {
+public class FirstLast {
     public static void main(String[] args) {
-        // Initialize scanner class
+        // initialize objects
         Scanner sc = new Scanner(System.in);
+        String str;
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
+        // Ask user for a string and store
+        // to String `str`
+        System.out.print("Enter a string: ");
+        str = sc.nextLine();
 
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
-        }
+        // output result to user
+        System.out.printf("The first char is %s and the last char is %s.",
+                str.charAt(0), str.charAt(str.length() - 1));
     }
 }

@@ -14,27 +14,25 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
+* Nov 22, 2023
+* The program returns the length of a given string.
 * */
-package hw.e11;
+package hw.e28;
 
 import java.util.Scanner;
 
-public class AgeCheck {
+public class StringLen {
     public static void main(String[] args) {
-        // Initialize scanner class
+        // initialize objects
         Scanner sc = new Scanner(System.in);
+        String str;
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
+        // ask user for string
+        System.out.print("Enter a string: ");
+        str = sc.next();
 
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
-        }
+        // use the String.length() method to determine
+        // the length of the string
+        System.out.println("The length of the string is " + str.length());
     }
 }

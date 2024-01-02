@@ -14,27 +14,20 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
-* */
-package hw.e11;
+ * Oct 25, 2023
+ * The following program prints out a chart of all squares
+ * and cubes of natural numbers from 5 to 40 (inclusive).
+ * */
+package hw.e17;
 
-import java.util.Scanner;
-
-public class AgeCheck {
+public class Chart {
     public static void main(String[] args) {
-        // Initialize scanner class
-        Scanner sc = new Scanner(System.in);
+        // print the header
+        System.out.println("Number\tSquare\tCube");
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
-
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
+        // print the chart
+        for (int i = 5; i <= 40; i++) {
+            System.out.println(i + "\t\t" + i * i + "\t\t" + i * i * i);
         }
     }
 }

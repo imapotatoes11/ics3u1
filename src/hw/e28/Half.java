@@ -14,27 +14,28 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
+* Nov 22, 2023
+* The program splits a string using the String.substring() method
 * */
-package hw.e11;
+package hw.e28;
 
 import java.util.Scanner;
 
-public class AgeCheck {
+public class Half {
     public static void main(String[] args) {
-        // Initialize scanner class
+        // initialize objects
         Scanner sc = new Scanner(System.in);
+        String str;
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
+        // ask user for string value
+        System.out.print("Enter a string: ");
+        str = sc.nextLine();
 
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
-        }
+        // break and return result to user
+        System.out.println(
+                str.substring(0, Math.floorDiv(str.length() - 1, 2)) +
+                " + " +
+                str.substring(Math.floorDiv(str.length() - 1, 2), str.length() - 1)
+        );
     }
 }

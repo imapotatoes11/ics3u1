@@ -14,27 +14,22 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
-* */
-package hw.e11;
+ * Dec 01, 2023
+ * The program prints out "Alarm!" several times
+ * */
+package hw.e31
 
-import java.util.Scanner;
-
-public class AgeCheck {
-    public static void main(String[] args) {
-        // Initialize scanner class
-        Scanner sc = new Scanner(System.in);
-
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
-
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
+class SoundAlarmkt {
+    fun alarm(i: Int) {
+        if (i < 1) {
+            throw IllegalArgumentException("Invalid number")
         } else {
-            System.out.println("You are not old enough to vote.");
+            for (j in 1..i) {
+                println("Alarm!")
+            }
         }
+    }
+    fun main(args: Array<String>) {
+        alarm(10)
     }
 }

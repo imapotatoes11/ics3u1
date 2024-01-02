@@ -14,27 +14,22 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
-* */
-package hw.e11;
+ * Oct 25, 2023
+ * The following program utilizes a do-while loop to count
+ * from 100 to 1 by 2s.
+ * */
+package hw.e15;
 
-import java.util.Scanner;
-
-public class AgeCheck {
+public class Count1 {
     public static void main(String[] args) {
-        // Initialize scanner class
-        Scanner sc = new Scanner(System.in);
+        // initialize the number var
+        int num = 100;
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
-
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
-        }
+        // print num and constantly subtract 2 until
+        // num > 1
+        do {
+            System.out.println(num);
+            num -= 2;
+        } while (num > 1);
     }
 }

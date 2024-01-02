@@ -14,27 +14,34 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
-* */
-package hw.e11;
+ * Oct 25, 2023
+ * The following program computes the following sum:
+ * 1.0/1 + 1.0/2 + 1.0/3 + ... + 1.0/N
+ * where N is an integer the limit the user enters
+ * */
+package hw.e18;
 
 import java.util.Scanner;
 
-public class AgeCheck {
+public class Limit {
     public static void main(String[] args) {
-        // Initialize scanner class
+        // initialize variables
+        int limit = 0;
+        int i = 1;
+        double sum = 0;
         Scanner sc = new Scanner(System.in);
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
+        // ask user for input
+        System.out.print("Enter a positive integer N: ");
+        limit = sc.nextInt();
 
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
+        // compute the sum
+        while (i <= limit) {
+            sum += 1.0 / i;
+            i++;
         }
+
+        // print out the results
+        System.out.println("Sum: " + sum);
     }
 }

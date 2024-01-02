@@ -14,27 +14,20 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
-* */
-package hw.e11;
+ * Oct 24, 2023
+ * The following program counts 0..50 by 5
+ * */
+package hw.e14;
 
-import java.util.Scanner;
-
-public class AgeCheck {
+public class Count1 {
     public static void main(String[] args) {
-        // Initialize scanner class
-        Scanner sc = new Scanner(System.in);
+        // instantiate objects
+        int num = 0;
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
-
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
+        // the loop
+        while (num <=50) {
+            System.out.println(num);
+            num += 5;
         }
     }
 }

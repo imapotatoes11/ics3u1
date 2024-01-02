@@ -14,27 +14,31 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
+* Nov 02, 2023
+* The following program reverses a given array using only one array in memory.
 * */
-package hw.e11;
+package hw.e21;
 
 import java.util.Scanner;
 
-public class AgeCheck {
+public class SelfReverse {
     public static void main(String[] args) {
-        // Initialize scanner class
+        // initialize objects
+        final int ARR_SIZE = 10;
         Scanner sc = new Scanner(System.in);
+        int[] list1 = new int[ARR_SIZE];
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
-
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
+        // ask user for values of list1
+        for (int i = ARR_SIZE - 1; i > 0; i--) {
+            System.out.printf("Enter value %d: ", ARR_SIZE - i);
+            list1[i] = sc.nextInt();
         }
+
+        // return list1 to user
+        System.out.print("list1: [");
+        for (int i = 0; i < ARR_SIZE - 1; i++) {
+            System.out.printf("%d, ", list1[i]);
+        }
+        System.out.printf("%d]", list1[ARR_SIZE - 1]);
     }
 }

@@ -14,27 +14,28 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
+* Nov 22, 2023
+* The program calculates the absolute value of a given integer.
 * */
-package hw.e11;
+package hw.e26;
 
 import java.util.Scanner;
 
-public class AgeCheck {
+public class AbsValue {
     public static void main(String[] args) {
-        // Initialize scanner class
+        // initialize objects
         Scanner sc = new Scanner(System.in);
+        // no clarification was provided, so
+        // integer values are assumed.
+        int n;
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
+        // ask user for value
+        System.out.print("Enter a number: ");
+        n = sc.nextInt();
 
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
-        }
+        // calculate and return result to user,
+        // utilizing the Math.abs() method to
+        // calculate the absolute value.
+        System.out.printf("The absolute value of %d is %d.", n, Math.abs(n));
     }
 }

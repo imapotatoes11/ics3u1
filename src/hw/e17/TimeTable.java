@@ -14,27 +14,31 @@
  * the license.
  * */
 /*
-* Oct 06, 2023
-* The following program checks if the user can vote or not.
-* */
-package hw.e11;
+ * Oct 25, 2023
+ * The following program asks the user for a positive integer and
+ * prints out the multiplication table for that number.
+ * */
+package hw.e17;
 
 import java.util.Scanner;
 
-public class AgeCheck {
+public class TimeTable {
     public static void main(String[] args) {
-        // Initialize scanner class
+        // initialize variables
+        int num = 0;
+        int i = 1;
+        int product = 0;
         Scanner sc = new Scanner(System.in);
 
-        // Ask user for age and store it in `age`
-        System.out.print("What is your age?: ");
-        int age = sc.nextInt();
+        // ask user for input
+        System.out.print("Enter a positive integer: ");
+        num = sc.nextInt();
 
-        // Check if age is greater than or equal to 18
-        if (age >= 18) {
-            System.out.println("You are old enough to vote!");
-        } else {
-            System.out.println("You are not old enough to vote.");
+        // print out the multiplication table
+        while (i <= 10) {
+            product = num * i;
+            System.out.println(num + " * " + i + " = " + product);
+            i++;
         }
     }
 }
